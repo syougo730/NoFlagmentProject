@@ -15,9 +15,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        println("-- onCreate --")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        println("-- onCreate --")
 
         // シェアードインスタンスを生成
         val data = Data.getInstance()
@@ -37,6 +38,16 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onPause() {
+        super.onPause()
+        println("-- onCreate --")
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        println("-- onResume --")
+    }
 
 
 
