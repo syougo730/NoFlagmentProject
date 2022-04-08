@@ -19,4 +19,5 @@ class Data {
     var cb1_checked = true
     var cb2_checked = false
 
+    var buttonText: String = "test"
 }

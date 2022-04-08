@@ -1,9 +1,14 @@
 package com.example.noflagmentproject
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import android.widget.CheckBox
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,11 +30,13 @@ class MainActivity : AppCompatActivity() {
 
         val checkBox1 = findViewById<CheckBox>(R.id.checkbox_1)
         val checkBox2 = findViewById<CheckBox>(R.id.checkbox_2)
+        var button = findViewById<Button>(R.id.test_button)
 
         //シェアードインスタンス
         if(data!=null){
             checkBox1.isChecked = data.cb1_checked //true
             checkBox2.isChecked = data.cb2_checked //false
+            button.text = data?.buttonText //test
         }
 
         //ViewModel
@@ -40,15 +47,25 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        println("-- onCreate --")
-
+        println("-- onPause --")
     }
 
     override fun onResume() {
         super.onResume()
         println("-- onResume --")
+        // シェアードインスタンスを生成
+        val data = Data.getInstance()
+        var button = findViewById<Button>(R.id.test_button)
+        button.text = data?.buttonText
     }
 
+    fun onButtonClick(view: View) {
+        var button = findViewById<Button>(view.id)
+            button.text = "Changed!"
 
+        // シェアードインスタンスを生成
+        val data = Data.getInstance()
+        data?.buttonText = "Changed!"
+    }
 
 }
