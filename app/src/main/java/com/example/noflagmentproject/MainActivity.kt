@@ -32,16 +32,18 @@ class MainActivity : AppCompatActivity() {
         val checkBox2 = findViewById<CheckBox>(R.id.checkbox_2)
         val button = findViewById<Button>(R.id.test_button)
 
-        //シェアードインスタンス
-        if(data!=null){
-            checkBox1.isChecked = data.cb1_checked //true
-            checkBox2.isChecked = data.cb2_checked //false
-            button.text = data?.buttonText //test
-        }
-
         //ViewModel
         checkBox1.isChecked = viewModel.checkbox1 //false
         checkBox2.isChecked = viewModel.checkbox2 //true
+        button.text = viewModel.buttonTexts[viewModel.button] //ほげ
+
+        //シェアードインスタンス
+//        if(data!=null){
+//            checkBox1.isChecked = data.cb1_checked //true
+//            checkBox2.isChecked = data.cb2_checked //false
+//            button.text = data.buttonTexts[data.button] //ほげ
+//        }
+
 
     }
 
@@ -55,13 +57,32 @@ class MainActivity : AppCompatActivity() {
         println("-- onResume --")
     }
 
+    //ViewModelでの処理
     fun onButtonClick(view: View) {
         var button = findViewById<Button>(view.id)
-            button.text = "Changed!"
-
-        // シェアードインスタンスを生成
-        val data = Data.getInstance()
-        data?.buttonText = "Changed!"
+        var num = viewModel.button
+        when(num){
+            0 -> num = 1
+            1 -> num = 0
+        }
+        viewModel.button = num
+        button.text = viewModel.buttonTexts[num]
     }
+
+      //シェアードインスタンスでの処理
+//    fun onButtonClick(view: View) {
+//        var button = findViewById<Button>(view.id)
+//        // シェアードインスタンスを生成
+//        val data = Data.getInstance()
+//        if (data != null) {
+//            var num = data.button
+//            when(num){
+//                0 -> num = 1
+//                1 -> num = 0
+//            }
+//            data.button = num
+//            button.text = data.buttonTexts[num]
+//        }
+//    }
 
 }

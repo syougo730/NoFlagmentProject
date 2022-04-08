@@ -19,5 +19,6 @@ class Data {
     var cb1_checked = true
     var cb2_checked = false
 
-    var buttonText: String = "test"
+    var button: Int = 0
+    var buttonTexts = arrayOf("ほげ","ふが")
 }
