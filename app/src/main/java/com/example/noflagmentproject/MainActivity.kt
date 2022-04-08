@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         val checkBox1 = findViewById<CheckBox>(R.id.checkbox_1)
         val checkBox2 = findViewById<CheckBox>(R.id.checkbox_2)
-        var button = findViewById<Button>(R.id.test_button)
+        val button = findViewById<Button>(R.id.test_button)
 
         //シェアードインスタンス
         if(data!=null){
@@ -53,10 +53,6 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         println("-- onResume --")
-        // シェアードインスタンスを生成
-        val data = Data.getInstance()
-        var button = findViewById<Button>(R.id.test_button)
-        button.text = data?.buttonText
     }
 
     fun onButtonClick(view: View) {
