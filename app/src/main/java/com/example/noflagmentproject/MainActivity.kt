@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState != null) {
             hoge_buttonFlg = savedInstanceState.getInt("BUTTON_FLG")
             println(" hoge_buttonFlg(SIS) -> $hoge_buttonFlg")
+            hogeFlagment.buttonFlg = hoge_buttonFlg
         }
         println(" hoge_buttonFlg -> $hoge_buttonFlg")
         button.text = buttonTexts[hoge_buttonFlg] //ふが
