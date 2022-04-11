@@ -4,4 +4,5 @@
     <string name="checkbox2">checkbox2</string>
     <string name="testButton">ほげ</string>
     <string name="hello_blank_fragment">Flagment利用のステータス保存</string>
+    <string name="sampleButton">サンプルボタン</string>
 </resources>
