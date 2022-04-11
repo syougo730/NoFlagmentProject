@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
     //savedInstanceState
     private var buttonFlg: Int = 0
     private val buttonTexts = arrayOf("ほげ","ふが")
-    val hogeFlagment = HogeFragment()
+    private val hogeFlagment = HogeFragment()
 
     // ViewModelのインスタンス作成、またはインスタンス取得 コードの理解度低い
 //    private val viewModel: CheckedViewModel by lazy {
@@ -27,14 +27,12 @@ class MainActivity : AppCompatActivity() {
 
         println("-- onCreate --")
 
-
         val checkBox1 = findViewById<CheckBox>(R.id.checkbox_1)
         val checkBox2 = findViewById<CheckBox>(R.id.checkbox_2)
         val button = findViewById<Button>(R.id.test_button)
 
-        //フラグメントでの保存
+        //フラグメント
         var hoge_buttonFlg = hogeFlagment.buttonFlg
-
 
         //println(" buttonFlag -> $buttonFlg")
         //savedInstanceState
@@ -67,6 +65,7 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+        hogeFlagment.onSaveInstanceState(outState) //fragmentのonSaveInstanceStateを呼び出す
         println("-- onSaveInstanceState --")
         outState.putInt("buttonFlg", buttonFlg)
         println(" buttonFlag(onSIS) -> $buttonFlg")

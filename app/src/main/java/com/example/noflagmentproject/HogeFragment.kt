@@ -1,17 +1,8 @@
 package com.example.noflagmentproject
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HogeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HogeFragment : Fragment() {
     var buttonFlg: Int = 1
 
