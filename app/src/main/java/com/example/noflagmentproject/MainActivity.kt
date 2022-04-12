@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 
 
 class MainActivity : AppCompatActivity() {
@@ -15,24 +16,18 @@ class MainActivity : AppCompatActivity() {
     private val hogeFlagment = HogeFragment()
 
     // ViewModelのインスタンス作成、またはインスタンス取得 コードの理解度低い
-//    private val viewModel: CheckedViewModel by lazy {
-//        ViewModelProvider(
-//            this, ViewModelProvider.NewInstanceFactory()
-//        ).get(CheckedViewModel::class.java)
-//    }
+    private val viewModel: CheckedViewModel by lazy {
+        ViewModelProvider(
+            this, ViewModelProvider.NewInstanceFactory()
+        ).get(CheckedViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         println("-- onCreate --")
-
-        val checkBox1 = findViewById<CheckBox>(R.id.checkbox_1)
-        val checkBox2 = findViewById<CheckBox>(R.id.checkbox_2)
         val button = findViewById<Button>(R.id.test_button)
-
-        //フラグメント
-        var hoge_buttonFlg = hogeFlagment.buttonFlg
 
         //println(" buttonFlag -> $buttonFlg")
         //savedInstanceState
@@ -42,18 +37,9 @@ class MainActivity : AppCompatActivity() {
 //        }
 //        button.text = buttonTexts[buttonFlg] //ほげ
 
-        if (savedInstanceState != null) {
-            hoge_buttonFlg = savedInstanceState.getInt("BUTTON_FLG")
-            println(" hoge_buttonFlg(SIS) -> $hoge_buttonFlg")
-            hogeFlagment.buttonFlg = hoge_buttonFlg
-        }
-        println(" hoge_buttonFlg -> $hoge_buttonFlg")
-        button.text = buttonTexts[hoge_buttonFlg] //ふが
 
         //ViewModel
-//        checkBox1.isChecked = viewModel.checkbox1 //false
-//        checkBox2.isChecked = viewModel.checkbox2 //true
-//        button.text = viewModel.buttonTexts[viewModel.button] //ほげ
+        button.text = viewModel.buttonTexts[viewModel.button] //ほげ
 
         //シェアードインスタンス
 //        val data = Data.getInstance()
@@ -81,19 +67,6 @@ class MainActivity : AppCompatActivity() {
         println("-- onResume --")
     }
 
-    //Flagmentでの処理
-    fun onButtonClick(view: View) {
-        var button = findViewById<Button>(view.id)
-        var num =  hogeFlagment.buttonFlg
-        when(num){
-            0 -> num = 1
-            1 -> num = 0
-        }
-        hogeFlagment.buttonFlg = num
-        button.text = buttonTexts[num]
-        println(" hogeFlagment -> $num ")
-    }
-
     //savedInstanceStateでの処理
 //    fun onButtonClick(view: View) {
 //        var button = findViewById<Button>(view.id)
@@ -107,16 +80,16 @@ class MainActivity : AppCompatActivity() {
 //    }
 
     //ViewModelでの処理
-//    fun onButtonClick(view: View) {
-//        var button = findViewById<Button>(view.id)
-//        var num = viewModel.button
-//        when(num){
-//            0 -> num = 1
-//            1 -> num = 0
-//        }
-//        viewModel.button = num
-//        button.text = viewModel.buttonTexts[num]
-//    }
+    fun onButtonClick(view: View) {
+        var button = findViewById<Button>(view.id)
+        var num = viewModel.button
+        when(num){
+            0 -> num = 1
+            1 -> num = 0
+        }
+        viewModel.button = num
+        button.text = viewModel.buttonTexts[num]
+    }
 
       //シェアードインスタンスでの処理
 //    fun onButtonClick(view: View) {
