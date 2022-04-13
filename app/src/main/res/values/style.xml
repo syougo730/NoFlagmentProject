@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <attr name="myButtonStyle" format="integer|reference" />
+    <!-- <item name="android:layout_*">の要素はR.attrでスタイル適用出来ないっぽい -->
+    <style name="MyButtonStyle" parent="android:style/Widget.Button">
+        <item name="android:textSize">16sp</item>
+        <item name="android:radius">100dp</item>
+        <item name="android:backgroundTint">@color/purple_500</item>
+    </style>
+
+</resources>

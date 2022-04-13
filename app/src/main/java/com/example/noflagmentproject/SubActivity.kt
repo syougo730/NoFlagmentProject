@@ -1,5 +1,8 @@
 package com.example.noflagmentproject
 
+import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.Gravity
 import android.view.ViewGroup
@@ -9,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class SubActivity : AppCompatActivity() {
 
+    @SuppressLint("UseCompatLoadingForDrawables", "ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sub)
@@ -25,36 +29,36 @@ class SubActivity : AppCompatActivity() {
             )
 
             val lp1: LinearLayout.LayoutParams = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
             )
-            lp1.weight = 2f
-            lp1.width = 200
+            lp1.weight = 1f
+            lp1.width = 0
             lp1.height = 200
-            lp1.gravity = Gravity.CENTER
+            lp1.gravity = Gravity.LEFT
+            lp1.setMargins(10,10,10,10)
 
             // TextView
             val textView = TextView(this)
             textView.text = "ほげほげふがふが"
-
-            //spacer
-            val space = Space(this)
+            textView.gravity = Gravity.CENTER
 
             //image
             val image = ImageView(this)
             image.setImageResource(R.drawable.sample)
+            image.scaleType = ImageView.ScaleType.CENTER_CROP
 
             //button
-            val button = Button(this)
+            val button = Button(this,null,R.attr.myButtonStyle)
             button.text = getString(R.string.sampleButton)
-
+            button.gravity = Gravity.CENTER
+            button.setBackgroundColor(Color.parseColor("#FF6200EE"))
+            button.setTextColor(Color.WHITE)
 
             //LinearLayoutに追加
 
             it.addView(image,lp1)
-//            it.addView(space)
             it.addView(textView,lp1)
-//            it.addView(space)
             it.addView(button,lp1)
 
         }

@@ -10,9 +10,9 @@
         android:id="@+id/test_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
         android:onClick="onButtonClick"
         android:text="@string/testButton"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_result_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|right"
             android:layout_margin="10dp"
+            android:backgroundTint="@color/purple_500"
             android:text="@string/sampleButton"
             tools:ignore="UsingOnClickInXml" />
     </LinearLayout>
