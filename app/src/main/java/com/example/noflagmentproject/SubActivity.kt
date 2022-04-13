@@ -1,6 +1,7 @@
 package com.example.noflagmentproject
 
 import android.annotation.SuppressLint
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
@@ -48,12 +49,22 @@ class SubActivity : AppCompatActivity() {
             image.setImageResource(R.drawable.sample)
             image.scaleType = ImageView.ScaleType.CENTER_CROP
 
+            //ボタンのスタイル　角丸設定など
+            val drawable = GradientDrawable()
+            drawable.cornerRadius = 20f//角丸
+            drawable.setStroke(6, Color.parseColor("#FF6200EE"))//輪郭
+            drawable.color = ColorStateList(//ボタン押下時・通常時の色指定
+                arrayOf(intArrayOf(android.R.attr.state_pressed), intArrayOf()),
+                intArrayOf(Color.parseColor("#FF6200EE"), Color.parseColor("#FF6200EE"))
+            )
+
             //button
             val button = Button(this,null,R.attr.myButtonStyle)
             button.text = getString(R.string.sampleButton)
             button.gravity = Gravity.CENTER
             button.setBackgroundColor(Color.parseColor("#FF6200EE"))
             button.setTextColor(Color.WHITE)
+            button.background = drawable
 
             //LinearLayoutに追加
 
